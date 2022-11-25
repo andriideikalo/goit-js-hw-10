@@ -1,4 +1,4 @@
-/  HTTP 1.1 vs HTTP 2.0
+//  HTTP 1.1 vs HTTP 2.0
 // https://www.google.com/imgres?imgurl=https%3A%2F%2Fcascadingmedia.com%2Fassets%2Fimages%2Finsites%2F2015%2F03%2Fhttp2%2Fhttp1-vs-http2-09a032a2.png&imgrefurl=https%3A%2F%2Fcascadingmedia.com%2Finsites%2F2015%2F03%2Fhttp-2.html&tbnid=Hm1Hfs4eiLceuM&vet=12ahUKEwjaoebXpbj7AhUHqYsKHWPpAVwQMygGegUIARC4AQ..i&docid=4EvuPcopD1HKDM&w=1602&h=1588&q=http%201%20vs%20http%202&ved=2ahUKEwjaoebXpbj7AhUHqYsKHWPpAVwQMygGegUIARC4AQ
 
 // alt + z
