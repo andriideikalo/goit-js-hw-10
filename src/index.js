@@ -13,7 +13,7 @@ const DEBOUNCE_DELAY = 300;
 const input = document.querySelector('#search-box');
 const body = document.querySelector('.body');
 const countrylist = document.querySelector('.country-list');
-const countryinfo = document.querySelector('.country-info');
+const countryInfo = document.querySelector('.country-info');
 // const countryCart = document.querySelector('.country-cart');
 // const countryItem = document.querySelector('.list-item');
 
@@ -23,7 +23,7 @@ document.getElementById('search-box').focus()
 
 
 // input.addEventListener('input', onSearch);
-input.addEventListener('input', debounce(onSearch, 300));
+input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 // console.dir(input.value)
 
 
@@ -31,10 +31,13 @@ function menyCantry() {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
 }
 
+
+
 function onSearch(evt) {
     evt.preventDefault()
     const cantryName = evt.target.value.trim()
-        // console.log(cantryName)
+    console.dir(cantryName)
+    console.dir(evt)
         // fetchCountries(cantryName).then(data => {
         //     if (data.length > 1 & data.length < 10) {
         //         fetchCountries(cantryName).then(data => creatMarkupListCantry(data));
@@ -53,27 +56,24 @@ function onSearch(evt) {
         //     }
         // })
 
-    // if (!evt.target.value) {
-
-    //     // countryCart.remove()
-    //     // countryItem.remove()
-    //     countrylist.remove()
-    //     countryinfo.remove()
-    //     Notiflix.Notify.failure('Oops, there is no country with that name');
-    //     return
-    // }
+    if (!cantryName) {
+        //     countrylist.remove()
+        //     countryinfo.remove()
+        location.reload()
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+        return
+    }
     fetchCountries(cantryName).then(data => {
         // console.log(data.length)
 
-        if (!data.length) {
-            Notiflix.Notify.failure('Oops, there is no country with that name');
-            // countryCart.remove()
-            // countryItem.remove()
-            countrylist.remove()
-            countryinfo.remove()
-            return
-        }
-
+        // if (!data.length) {
+        //     Notiflix.Notify.failure('Oops, there is no country with that name');
+        //     // countryCart.remove()
+        //     // countryItem.remove()
+        //     countrylist.remove()
+        //     countryinfo.remove()
+        //     return
+        // }
 
 
         if (data.length > 10) {
@@ -88,17 +88,10 @@ function onSearch(evt) {
         }
 
 
-
     })
 
 }
 
-// function notFoundCantry() {
-//     Notiflix.Notify.failure('Oops, there is no country with that name');
-//     setTimeout(() => {
-//         location.reload()
-//     }, 300);
-// }
 
 function creatMarkupCantry(arr) {
     const markup = arr.map(({ name, flags, capital, population, languages }) => `
@@ -106,14 +99,14 @@ function creatMarkupCantry(arr) {
             <h1>${name.official}</h1>
             <h2>Capital: ${capital}</h2>
             <h3>Population: ${population} piople</h3>
-            <h3>Languages: ${Object.values(languages)}</h3>/div>`).join('');
-    body.innerHTML = markup;
+            <h3>Languages: ${Object.values(languages)}</h3></div>`).join('');
+    countryInfo.innerHTML = markup;
 
 }
 
 function creatMarkupListCantry(arr) {
-    const markupList = arr.map(({ name, flags }) => `<li class="country-list"> <img src="${flags.svg}" alt="${name.official}" width = "50">
+    const markupList = arr.map(({ name, flags }) => `<li class="country-item" styles{ list-style: none;}> <img src="${flags.svg}" alt="${name.official}" width = "50">
             <h1>${name.official}</h1></li>`).join('');
-    body.innerHTML = markupList;
+    countrylist.innerHTML = markupList;
 
 }
