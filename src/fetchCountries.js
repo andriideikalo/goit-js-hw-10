@@ -1,5 +1,7 @@
 import Notiflix from 'notiflix';
 const BASE_URL = 'https://restcountries.com/v3.1/name/';
+const countrylist = document.querySelector('.country-list');
+const countryinfo = document.querySelector('.country-info');
 
 export default function fetchCountries(cantryName) {
     // console.log(fetch(`https://restcountries.com/v3.1/name/${cantryName}?name=name.official&capital=capital&populatio=population&flags=flags.svg&languages=languages`))
@@ -16,8 +18,11 @@ export default function fetchCountries(cantryName) {
 }
 
 function notFoundCantry() {
+
+    countrylist.remove()
+    countryinfo.remove()
     Notiflix.Notify.failure('Oops, there is no country with that name');
     setTimeout(() => {
         location.reload()
-    }, 2000);
+    }, 100);
 }
