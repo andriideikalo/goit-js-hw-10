@@ -77,8 +77,8 @@ function onSearch(evt) {
         }
 
         if (data.length > 10) {
-            countrylist.remove()
-            countryinfo.remove()
+            // countrylist.remove()
+            // countryInfo.remove()
             menyCantry()
                 // creatMarkup()
             return
