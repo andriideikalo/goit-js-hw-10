@@ -14,8 +14,8 @@ const input = document.querySelector('#search-box');
 const body = document.querySelector('.body');
 const countrylist = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-// const countryCart = document.querySelector('.country-cart');
-// const countryItem = document.querySelector('.list-item');
+const countryCart = document.querySelector('.country-cart');
+const countryItem = document.querySelector('.list-item');
 
 document.getElementById('search-box').focus()
     // const fetchCountries = new NewFetchCountries();
@@ -57,35 +57,46 @@ function onSearch(evt) {
         // })
 
     if (!cantryName) {
-        //     countrylist.remove()
-        //     countryinfo.remove()
-        location.reload()
+        countrylist.remove()
+        countryInfo.remove()
+            // location.reload()
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return
     }
+
     fetchCountries(cantryName).then(data => {
         // console.log(data.length)
 
-        // if (!data.length) {
-        //     Notiflix.Notify.failure('Oops, there is no country with that name');
-        //     // countryCart.remove()
-        //     // countryItem.remove()
-        //     countrylist.remove()
-        //     countryinfo.remove()
-        //     return
-        // }
-
+        if (!data.length) {
+            //     Notiflix.Notify.failure('Oops, there is no country with that name');
+            //     // countryCart.remove()
+            //     // countryItem.remove()
+            countrylist.remove()
+            countryinfo.remove()
+            return
+        }
 
         if (data.length > 10) {
-
+            countrylist.remove()
+            countryinfo.remove()
             menyCantry()
+                // creatMarkup()
+            return
         } else if (data.length >= 2 & data.length <= 10) {
             creatMarkupListCantry(data)
-            countryinfo.remove()
+                // creatMarkup()
+                // countryCart.remove()
+            return
+
         } else if (data.length = 1) {
             creatMarkupCantry(data)
             countrylist.remove()
+            return
         }
+
+
+
+        // creatMarkup()
 
 
     })
@@ -95,7 +106,7 @@ function onSearch(evt) {
 
 function creatMarkupCantry(arr) {
     const markup = arr.map(({ name, flags, capital, population, languages }) => `
-           <div class="country-info">  <img src="${flags.svg}" alt="${name.official}" width = "100">
+           <div class="country-cart">  <img src="${flags.svg}" alt="${name.official}" width = "100">
             <h1>${name.official}</h1>
             <h2>Capital: ${capital}</h2>
             <h3>Population: ${population} piople</h3>
@@ -105,8 +116,14 @@ function creatMarkupCantry(arr) {
 }
 
 function creatMarkupListCantry(arr) {
-    const markupList = arr.map(({ name, flags }) => `<li class="country-item" styles{ list-style: none;}> <img src="${flags.svg}" alt="${name.official}" width = "50">
+    const markupList = arr.map(({ name, flags }) => `<li class="country-item"> <img src="${flags.svg}" alt="${name.official}" width = "50">
             <h1>${name.official}</h1></li>`).join('');
     countrylist.innerHTML = markupList;
 
 }
+
+// function creatMarkup() {
+//     const markupList = (() => `<ul class="country-list"></ul>;
+//         <div class="country-info"></div>`).join('');
+//     body.innerHTML = markupList;
+// }
