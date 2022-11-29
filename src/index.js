@@ -31,13 +31,11 @@ function menyCantry() {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
 }
 
-
-
 function onSearch(evt) {
     evt.preventDefault()
     const cantryName = evt.target.value.trim()
-    console.dir(cantryName)
-    console.dir(evt)
+        // console.dir(cantryName)
+        // console.dir(evt)
         // fetchCountries(cantryName).then(data => {
         //     if (data.length > 1 & data.length < 10) {
         //         fetchCountries(cantryName).then(data => creatMarkupListCantry(data));
@@ -57,9 +55,10 @@ function onSearch(evt) {
         // })
 
     if (!cantryName) {
-        countrylist.remove()
-        countryInfo.remove()
-            // location.reload()
+
+        // countrylist.remove()
+        // countryInfo.remove()
+        // location.reload()
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return
     }
@@ -69,10 +68,10 @@ function onSearch(evt) {
 
         if (!data.length) {
             //     Notiflix.Notify.failure('Oops, there is no country with that name');
-            //     // countryCart.remove()
-            //     // countryItem.remove()
-            countrylist.remove()
-            countryinfo.remove()
+            // countrylist.remove()
+            // countryInfo.remove()
+            countrylist.innerHTML = '';
+            countryInfo.innerHTML = '';
             return
         }
 
@@ -80,23 +79,26 @@ function onSearch(evt) {
             // countrylist.remove()
             // countryInfo.remove()
             menyCantry()
-                // creatMarkup()
+            countrylist.innerHTML = '';
+            countryInfo.innerHTML = '';
+
             return
         } else if (data.length >= 2 & data.length <= 10) {
             creatMarkupListCantry(data)
-                // creatMarkup()
                 // countryCart.remove()
+            countryInfo.innerHTML = '';
             return
 
         } else if (data.length = 1) {
             creatMarkupCantry(data)
-            countrylist.remove()
+                // countrylist.remove()
+            countrylist.innerHTML = ''
             return
         }
 
 
 
-        // creatMarkup()
+
 
 
     })
@@ -121,9 +123,3 @@ function creatMarkupListCantry(arr) {
     countrylist.innerHTML = markupList;
 
 }
-
-// function creatMarkup() {
-//     const markupList = (() => `<ul class="country-list"></ul>;
-//         <div class="country-info"></div>`).join('');
-//     body.innerHTML = markupList;
-// }

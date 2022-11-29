@@ -22,7 +22,4 @@ function notFoundCantry() {
     countrylist.remove()
     countryinfo.remove()
 
-    //     setTimeout(() => {
-    // location.reload()
-    //     }, 100);
 }
