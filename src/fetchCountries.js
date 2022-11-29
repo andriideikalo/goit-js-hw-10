@@ -19,7 +19,4 @@ export default function fetchCountries(cantryName) {
 
 function notFoundCantry() {
     Notiflix.Notify.failure('Oops, there is no country with that name');
-    countrylist.remove()
-    countryinfo.remove()
-
 }

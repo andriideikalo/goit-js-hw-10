@@ -73,7 +73,6 @@ function onSearch(evt) {
             // countryInfo.remove()
             countrylist.innerHTML = '';
             countryInfo.innerHTML = '';
-            return
         }
 
         if (data.length > 10) {
@@ -83,18 +82,15 @@ function onSearch(evt) {
             countrylist.innerHTML = '';
             countryInfo.innerHTML = '';
 
-            return
         } else if (data.length >= 2 & data.length <= 10) {
             creatMarkupListCantry(data)
                 // countryCart.remove()
             countryInfo.innerHTML = '';
-            return
 
         } else if (data.length = 1) {
             creatMarkupCantry(data)
                 // countrylist.remove()
             countrylist.innerHTML = ''
-            return
         }
 
 
