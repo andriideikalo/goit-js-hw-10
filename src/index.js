@@ -58,7 +58,8 @@ function onSearch(evt) {
 
         // countrylist.remove()
         // countryInfo.remove()
-        // location.reload()
+        countrylist.innerHTML = '';
+        countryInfo.innerHTML = '';
         Notiflix.Notify.failure('Oops, there is no country with that name');
         return
     }
